@@ -1,0 +1,147 @@
+---
+title: "Agent Fees"
+sidebarTitle: "Agent Fees"
+description: "How agents charge for assignment and dispute resolution."
+---
+
+## Agent Fee Types
+
+Agents can charge two types of fees:
+
+<CardGroup cols={2}>
+  <Card title="Assignment Fee" icon="tag">
+    Charged when the agent is assigned to an escrow at creation.
+  </Card>
+  <Card title="Dispute Fee" icon="gavel">
+    Charged only if the agent resolves a dispute.
+  </Card>
+</CardGroup>
+
+---
+
+## Assignment Fee
+
+Some agents charge an **upfront fee** when selected for an escrow:
+
+- **When charged:** At escrow creation
+- **Paid by:** Buyer (on top of escrow amount + protocol fee)
+- **Typical range:** 0-2%
+- **Purpose:** Reserves the agent's capacity
+
+<Note>
+Many agents charge 0% assignment fee. Check before selecting!
+</Note>
+
+---
+
+## Dispute Fee
+
+When an agent **resolves a dispute**, they earn a dispute fee:
+
+- **When charged:** Only when `agentResolve()` is called
+- **Deducted from:** The escrow funds (before split)
+- **Typical range:** 1-10%
+- **Capped at:** 10% maximum (enforced by DAO)
+
+### How Dispute Fees Work
+
+```
+Escrow Amount: $1,000
+Agent Dispute Fee: 5%
+
+Agent Decides: 60% buyer / 40% seller
+
+Calculation:
+1. Agent fee: $1,000 × 5% = $50
+2. Remaining: $1,000 - $50 = $950
+3. Buyer: $950 × 60% = $570
+4. Seller: $950 × 40% = $380
+
+Distribution:
+- Agent: $50
+- Buyer: $570
+- Seller: $380
+- Total: $1,000 ✓
+```
+
+---
+
+## No Agent Fee If...
+
+<AccordionGroup>
+  <Accordion title="Buyer releases directly" icon="hand-holding-dollar">
+    If the buyer releases funds without a dispute, no agent fee is charged.
+  </Accordion>
+  <Accordion title="Seller refunds" icon="undo">
+    Seller-initiated refunds don't involve the agent.
+  </Accordion>
+  <Accordion title="Mutual split" icon="divide">
+    If parties agree on a split without agent intervention, no fee is charged.
+  </Accordion>
+  <Accordion title="Agent times out" icon="clock">
+    If the agent doesn't respond within 7 days and you claim timeout, no fee is charged.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Fee Bounds
+
+The DAO sets minimum and maximum fee limits:
+
+| Parameter | Value | Purpose |
+|-----------|-------|---------|
+| **Min Fee** | 0.1% (10 bps) | Prevents "free" agents with no skin in the game |
+| **Max Fee** | 10% (1000 bps) | Protects users from excessive charges |
+
+Agents must set their fees within these bounds when registering.
+
+---
+
+## Choosing an Agent by Fees
+
+When selecting an agent, consider:
+
+<CardGroup cols={2}>
+  <Card title="Low Fees" icon="down">
+    **Pros:** Cheaper disputes
+    
+    **Cons:** May indicate less experience
+  </Card>
+  <Card title="Higher Fees" icon="up">
+    **Pros:** May signal quality/expertise
+    
+    **Cons:** More expensive if disputes occur
+  </Card>
+</CardGroup>
+
+<Tip>
+The best strategy: choose based on reputation first, fees second. A skilled agent at 5% beats an inexperienced one at 1%.
+</Tip>
+
+---
+
+## Viewing Agent Fees
+
+When creating an escrow, you can see each agent's fees:
+
+1. Click on an agent's profile
+2. View their **Assignment Fee** and **Dispute Fee**
+3. Consider their reputation alongside fees
+4. Select the best fit for your needs
+
+---
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can agents change their fees?">
+    Agents can update their fees anytime, but changes only affect new escrows. Your escrow uses the fees at creation time.
+  </Accordion>
+  <Accordion title="What if the agent decides 100% for one party?">
+    The agent fee is still deducted first. So "100% to buyer" means the buyer gets (100% - agent fee).
+  </Accordion>
+  <Accordion title="Are agent fees in addition to protocol fees?">
+    Yes. Protocol fee (1%) is paid at creation. Agent fees (if any) are paid from the escrowed funds.
+  </Accordion>
+</AccordionGroup>

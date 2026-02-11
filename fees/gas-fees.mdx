@@ -1,0 +1,137 @@
+---
+title: "Gas Fees"
+sidebarTitle: "Gas Fees"
+description: "Understanding Ethereum gas costs and the zero-gas NYKNYC option."
+---
+
+## What Are Gas Fees?
+
+Gas fees are payments to Ethereum validators for processing your transactions:
+
+- **Every action** on Ethereum costs gas
+- **Gas prices fluctuate** based on network demand
+- **You pay in ETH** (even for USDC transactions)
+
+---
+
+## Zenland Gas Costs
+
+Typical gas costs for Zenland actions:
+
+| Action | Gas Used | Cost @ 20 gwei | Cost @ 100 gwei |
+|--------|----------|----------------|-----------------|
+| Create Escrow | ~200,000 | ~$1.50 | ~$7.50 |
+| Accept Escrow | ~100,000 | ~$0.75 | ~$3.75 |
+| Release Funds | ~80,000 | ~$0.60 | ~$3.00 |
+| Open Dispute | ~60,000 | ~$0.45 | ~$2.25 |
+| Agent Resolve | ~120,000 | ~$0.90 | ~$4.50 |
+
+<Note>
+Costs vary with ETH price and network congestion. Check [etherscan.io/gastracker](https://etherscan.io/gastracker) for current prices.
+</Note>
+
+---
+
+## Zero Gas with NYKNYC
+
+<Card title="NYKNYC Wallet" icon="star">
+  **Zenland sponsors all gas fees** when you use the NYKNYC smart wallet.
+</Card>
+
+### What's Free with NYKNYC?
+
+<CardGroup cols={2}>
+  <Card title="Escrow Actions" icon="file-contract">
+    Create, accept, release, refund — all free
+  </Card>
+  <Card title="Dispute Resolution" icon="gavel">
+    Open disputes, invite agents — all free
+  </Card>
+  <Card title="Agent Registration" icon="user-plus">
+    Register as an agent — free
+  </Card>
+  <Card title="Agent Actions" icon="scale-balanced">
+    Resolve disputes as an agent — free
+  </Card>
+</CardGroup>
+
+### How It Works
+
+NYKNYC uses **ERC-4337 Account Abstraction**:
+
+```
+Traditional Wallet:
+You → Pay Gas → Transaction
+
+NYKNYC:
+You → Transaction → Zenland Pays Gas
+```
+
+1. You sign the transaction
+2. Zenland's paymaster covers the gas
+3. You pay nothing in ETH
+
+---
+
+## Using Standard Wallets
+
+If you use MetaMask, Coinbase Wallet, or other wallets:
+
+### You'll Need ETH
+
+Keep ETH in your wallet for gas. Recommended:
+- **Small transactions:** 0.01 ETH ($15-30)
+- **Multiple transactions:** 0.05 ETH ($80-150)
+- **Active trading:** 0.1+ ETH
+
+### Tips to Save on Gas
+
+<AccordionGroup>
+  <Accordion title="Time your transactions" icon="clock">
+    Gas is cheaper at night (US time) and on weekends. Avoid peak hours.
+  </Accordion>
+  <Accordion title="Set a gas limit" icon="slider">
+    Most wallets let you set a max gas price. Be patient for off-peak execution.
+  </Accordion>
+  <Accordion title="Batch if possible" icon="layer-group">
+    Using permit (EIP-2612) for tokens can save one transaction.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Gas vs Protocol Fees
+
+Don't confuse gas fees with protocol fees:
+
+| Type | What It Is | Who Gets It |
+|------|------------|-------------|
+| **Gas Fee** | Payment to Ethereum validators | Ethereum network |
+| **Protocol Fee** | 1% of escrow amount | Zenland DAO Treasury |
+
+Both are separate costs. Protocol fee is fixed (1%), gas varies with network.
+
+---
+
+## Which Wallet Should You Use?
+
+<Tabs>
+  <Tab title="Choose NYKNYC If...">
+    - You want zero gas costs
+    - You're new to crypto
+    - You don't have ETH
+    - You want the simplest experience
+  </Tab>
+  <Tab title="Choose Standard Wallets If...">
+    - You already have a wallet with ETH
+    - You prefer full self-custody
+    - You want to use hardware wallets
+    - You're comfortable with gas management
+  </Tab>
+</Tabs>
+
+---
+
+<Card title="Get Started with NYKNYC" icon="rocket" href="/getting-started/wallets">
+  Setup takes 2 minutes →
+</Card>

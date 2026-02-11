@@ -1,0 +1,124 @@
+---
+title: "Audit Status"
+sidebarTitle: "Audits"
+description: "Security audits and vulnerability disclosure."
+---
+
+## Current Audit Status
+
+<Card title="Audit in Progress" icon="spinner">
+  Zenland V2 smart contracts are undergoing security review.
+</Card>
+
+| Item | Status |
+|------|--------|
+| Internal Security Review | ✅ Complete |
+| Automated Analysis (Slither, etc.) | ✅ Complete |
+| External Audit | 🔄 In Progress |
+| Bug Bounty Program | 📋 Planned |
+
+---
+
+## Security Practices
+
+### Code Quality
+
+- **Solidity 0.8+** — Built-in overflow protection
+- **OpenZeppelin contracts** — Battle-tested libraries
+- **Comprehensive tests** — Unit, integration, fuzz, invariant
+- **No floating pragma** — Exact compiler versions
+
+### Review Process
+
+Before deployment:
+1. ✅ 100% test coverage target
+2. ✅ Internal security review
+3. ✅ Automated vulnerability scanning
+4. 🔄 External audit by reputable firm
+5. 📋 Testnet deployment and testing
+6. 📋 Mainnet deployment
+
+---
+
+## Audit Reports
+
+Once complete, audit reports will be published here:
+
+| Auditor | Scope | Date | Report |
+|---------|-------|------|--------|
+| *TBD* | EscrowFactory, EscrowImpl, AgentRegistry, FeeManager | *Pending* | *Pending* |
+
+---
+
+## Known Limitations
+
+The following are **known behaviors**, not bugs:
+
+<AccordionGroup>
+  <Accordion title="Fee-on-transfer tokens not supported">
+    Tokens that charge fees on transfer will cause escrow amount mismatches. Only use whitelisted stablecoins.
+  </Accordion>
+  <Accordion title="Rebasing tokens not supported">
+    Tokens that change balance over time (like stETH) are not supported.
+  </Accordion>
+  <Accordion title="Locked escrows can lock forever">
+    This is intentional behavior for 2-of-2 escrows, not a vulnerability.
+  </Accordion>
+  <Accordion title="Escrows are immutable after creation">
+    Once created, escrow rules cannot change. This is a security feature.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Vulnerability Disclosure
+
+Found a security issue? Please report responsibly.
+
+<Warning>
+**Do NOT** disclose vulnerabilities publicly before they are fixed.
+</Warning>
+
+### How to Report
+
+1. **Email:** security@zen.land
+2. **Include:**
+   - Description of the vulnerability
+   - Steps to reproduce
+   - Potential impact assessment
+   - Your suggested fix (optional)
+
+### What to Expect
+
+| Timeframe | Action |
+|-----------|--------|
+| 24 hours | Acknowledgment of your report |
+| 72 hours | Initial assessment and severity rating |
+| 7-14 days | Fix development (for critical issues) |
+| After fix | Coordinated disclosure and credit |
+
+### Bug Bounty (Coming Soon)
+
+We're planning a bug bounty program with rewards based on severity:
+
+| Severity | Potential Reward |
+|----------|------------------|
+| Critical (fund loss) | Up to $50,000 |
+| High (frozen funds) | Up to $10,000 |
+| Medium (DoS, griefing) | Up to $2,000 |
+| Low (UI, informational) | Up to $500 |
+
+*Exact amounts TBD. Check back for official program launch.*
+
+---
+
+## Security Contacts
+
+<CardGroup cols={2}>
+  <Card title="Report Vulnerability" icon="shield-exclamation" href="mailto:security@zen.land">
+    security@zen.land
+  </Card>
+  <Card title="General Security Questions" icon="circle-question" href="https://t.me/zenland">
+    Ask in Telegram
+  </Card>
+</CardGroup>

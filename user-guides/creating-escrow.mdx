@@ -1,0 +1,200 @@
+---
+title: "Creating an Escrow"
+sidebarTitle: "Creating Escrow"
+description: "Step-by-step guide to creating your first escrow contract."
+---
+
+## Before You Start
+
+Make sure you have:
+
+<CardGroup cols={2}>
+  <Card title="Connected Wallet" icon="wallet">
+    Your wallet connected to the Zenland app
+  </Card>
+  <Card title="USDC or USDT" icon="coins">
+    Enough stablecoins to cover the escrow amount + 1% fee
+  </Card>
+  <Card title="Seller's Address" icon="user">
+    The seller's Ethereum wallet address
+  </Card>
+  <Card title="Clear Agreement" icon="handshake">
+    Agreement on terms with your counterparty
+  </Card>
+</CardGroup>
+
+---
+
+## Step 1: Navigate to Create Escrow
+
+1. Open [app.zen.land](https://app.zen.land)
+2. Connect your wallet
+3. Click **"Create Escrow"** in the navigation or dashboard
+
+---
+
+## Step 2: Enter Escrow Details
+
+Fill in the following fields:
+
+### Seller Address
+
+Enter the Ethereum address of the person you're paying:
+
+```
+0x1234567890abcdef1234567890abcdef12345678
+```
+
+<Tip>
+Double-check this address! Funds sent to the wrong address cannot be recovered.
+</Tip>
+
+### Amount
+
+Enter how much you want to escrow:
+
+- **Minimum:** $1 (or equivalent in stablecoin)
+- **Token:** Choose USDC or USDT
+- **Fee:** 1% added on top (min $0.50, max $50)
+
+### Description
+
+Write what this escrow is for. Be specific:
+
+<CardGroup cols={2}>
+  <Card title="✅ Good Example">
+    "Website development: 5-page portfolio site with responsive design, contact form, and CMS integration. Delivery in 2 weeks."
+  </Card>
+  <Card title="❌ Bad Example">
+    "Website"
+  </Card>
+</CardGroup>
+
+### Buyer Protection Time
+
+How long you have to review the delivery after the seller marks it complete:
+
+| Timeframe | Good For |
+|-----------|----------|
+| 1 day | Simple, small transactions |
+| 3-7 days | Services requiring testing |
+| 14+ days | Complex projects |
+
+<Warning>
+After this time expires, the seller can claim funds even if you haven't released them. Choose wisely!
+</Warning>
+
+---
+
+## Step 3: Choose an Agent
+
+This is one of the most important decisions:
+
+### Option A: Select an Agent (Recommended)
+
+Browse available agents and check:
+- **Reputation** — resolution history, success rate
+- **Fee** — what % they charge for disputes
+- **Specialization** — some agents focus on specific industries
+
+<Card title="Why agents matter" icon="lightbulb">
+If you and the seller disagree, the agent decides how funds are split. Choose someone trustworthy and qualified.
+</Card>
+
+### Option B: No Agent (Locked Escrow)
+
+<Warning>
+**Advanced users only!** Locked escrows have no dispute resolution.
+</Warning>
+
+With no agent:
+- You and the seller must agree on everything
+- If you disagree, funds can be locked **forever**
+- Only use with highly trusted counterparties
+
+[Learn more about Locked Escrows →](/escrow-types/locked-escrow)
+
+---
+
+## Step 4: Review the Contract
+
+Before funding, you'll see:
+
+1. **PDF Preview** — A contract summarizing all terms
+2. **Escrow Address** — The deterministic address where funds will go
+3. **Fee Breakdown** — Amount + protocol fee
+
+<Note>
+The PDF is hashed and stored on-chain. This proves what you both agreed to.
+</Note>
+
+### What to Verify
+
+- [ ] Seller address is correct
+- [ ] Amount matches your agreement
+- [ ] Description covers all deliverables
+- [ ] Protection time is adequate
+- [ ] Agent is acceptable (if applicable)
+
+---
+
+## Step 5: Fund the Escrow
+
+Click **"Create & Fund"** and approve the transaction:
+
+<Steps>
+  <Step title="Approve Token Spend">
+    Your wallet asks to approve USDC/USDT spending
+  </Step>
+  <Step title="Confirm Transaction">
+    Sign the transaction to create and fund the escrow
+  </Step>
+  <Step title="Wait for Confirmation">
+    Transaction is mined on Ethereum (~15 seconds)
+  </Step>
+  <Step title="Escrow Created!">
+    You'll see confirmation and can share the link with your seller
+  </Step>
+</Steps>
+
+---
+
+## After Creation
+
+Your escrow is now in `PENDING` state, waiting for the seller to accept.
+
+### What Happens Next?
+
+1. **Notify your seller** — Share the escrow link or let them check their dashboard
+2. **Seller reviews** — They verify the terms match your agreement
+3. **Seller accepts** — Escrow becomes `ACTIVE`, work begins
+4. **Or seller declines** — You receive an immediate refund
+
+### If Seller Doesn't Respond
+
+If the seller doesn't accept within the acceptance window:
+
+- You can call **"Cancel Expired"** to get a full refund
+- No penalties, you just get your money back
+
+---
+
+## Common Issues
+
+<AccordionGroup>
+  <Accordion title="Transaction failed">
+    Check that you have:
+    - Enough stablecoins for amount + fee
+    - Enough ETH for gas (unless using NYKNYC)
+    - Token approval wasn't revoked
+  </Accordion>
+  <Accordion title="Seller can't see the escrow">
+    Make sure:
+    - They're connected to the right wallet address
+    - They're on the correct network (Mainnet vs Sepolia)
+    - They refresh their dashboard
+  </Accordion>
+  <Accordion title="I entered the wrong seller address">
+    Unfortunately, escrows are created atomically. If you used the wrong address, wait for the acceptance window to expire, then cancel for a refund. Double-check next time!
+  </Accordion>
+</AccordionGroup>

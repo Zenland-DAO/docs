@@ -1,0 +1,152 @@
+---
+title: "Glossary"
+sidebarTitle: "Glossary"
+description: "Key terms and definitions used in Zenland."
+---
+
+## A
+
+### Agent
+A professional dispute resolver who reviews cases and decides how to split escrowed funds. Agents stake funds to participate and earn fees for resolutions.
+
+### Assignment Fee
+An optional upfront fee charged by an agent when they are selected for an escrow.
+
+---
+
+## B
+
+### BPS (Basis Points)
+A unit for measuring percentages. 100 bps = 1%. Used for fee calculations.
+
+### Buyer
+The party who creates and funds the escrow. Typically the one paying for goods or services.
+
+### Buyer Protection Time
+The period after a seller marks as fulfilled during which the buyer can review before the seller can claim funds.
+
+---
+
+## D
+
+### DAO (Decentralized Autonomous Organization)
+The community governance structure that owns and controls Zenland. Token holders vote on proposals.
+
+### Dispute
+A formal disagreement raised by the buyer, indicating an issue with the delivery.
+
+### Dispute Fee
+A fee charged by an agent only when they resolve a dispute.
+
+---
+
+## E
+
+### EIP-1167 (Minimal Proxy)
+A standard for deploying lightweight clone contracts. Zenland uses this for gas-efficient escrow creation.
+
+### Escrow
+A smart contract that holds funds until both parties agree on the outcome.
+
+### ERC-4337 (Account Abstraction)
+A standard for smart contract wallets. Powers NYKNYC's gasless transactions.
+
+---
+
+## F
+
+### Factory (EscrowFactory)
+The main contract that creates new escrow instances. All escrows are deployed through the factory.
+
+### Fulfilled
+An escrow state indicating the seller has marked the work as complete.
+
+---
+
+## G
+
+### Gas
+The fee paid to Ethereum validators to process transactions.
+
+---
+
+## L
+
+### Locked Escrow
+An escrow created without an agent. Only mutual agreement (or seller refund) can move funds. Based on Satoshi's 2-of-2 escrow design.
+
+---
+
+## M
+
+### MAV (Maximum Arbitratable Value)
+The maximum escrow value an agent can handle, based on their stake. Calculated as stake × multiplier.
+
+### Minimal Proxy
+See EIP-1167.
+
+---
+
+## N
+
+### NYKNYC
+Zenland's recommended smart wallet. "Not Your Keys, Not Your... Crypto?" Uses account abstraction for gasless transactions.
+
+---
+
+## P
+
+### Pending
+An escrow state where the seller hasn't yet accepted the terms.
+
+### Permit (EIP-2612)
+A gasless token approval standard. Allows approving + transferring in one transaction.
+
+### Protocol Fee
+The 1% fee charged by Zenland on escrow creation.
+
+---
+
+## R
+
+### Release
+The action of sending escrowed funds to the seller, typically when the buyer is satisfied.
+
+### Refund
+Returning escrowed funds to the buyer. Sellers can do this unilaterally anytime.
+
+---
+
+## S
+
+### Seller
+The party receiving payment in exchange for goods or services.
+
+### Split
+A mutual agreement to divide escrowed funds between buyer and seller, often used to settle disputes.
+
+### Stake
+Funds locked by agents as collateral. Determines their MAV and provides economic security.
+
+---
+
+## T
+
+### Terminal State
+A final escrow state (Released, Refunded, Split, Agent Resolved) from which no further actions are possible.
+
+### Timelock
+A smart contract that delays execution of DAO proposals, giving the community time to react.
+
+### Treasury
+The DAO-controlled wallet that receives protocol fees.
+
+---
+
+## W
+
+### WAD
+An 18-decimal fixed-point number format used for internal calculations. Normalizes tokens with different decimals.
+
+### Whitelist
+The list of tokens approved by the DAO for use in escrows. Currently USDC and USDT.

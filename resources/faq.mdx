@@ -1,0 +1,121 @@
+---
+title: "FAQ"
+sidebarTitle: "FAQ"
+description: "Frequently asked questions about Zenland."
+---
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="What is Zenland?">
+    Zenland is a decentralized escrow platform built on Ethereum. It allows two parties to transact safely using smart contracts instead of trusting a company.
+  </Accordion>
+  <Accordion title="Is Zenland safe?">
+    Yes. Funds are held in smart contracts, not by Zenland. The code is audited and open source. No one can access your funds without following the escrow rules.
+  </Accordion>
+  <Accordion title="What blockchain does Zenland use?">
+    Zenland is deployed on **Ethereum mainnet** and **Sepolia testnet**. More chains may be added through DAO governance.
+  </Accordion>
+  <Accordion title="What tokens are supported?">
+    Currently USDC and USDT. More tokens can be added via DAO proposals.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Fees & Costs
+
+<AccordionGroup>
+  <Accordion title="How much does it cost to use Zenland?">
+    **1% of the escrow amount**, with a minimum of $0.50 and maximum of $50. Plus Ethereum gas fees (or free with NYKNYC wallet).
+  </Accordion>
+  <Accordion title="Who pays the fee?">
+    The buyer pays the protocol fee when creating the escrow. The seller receives the full escrow amount.
+  </Accordion>
+  <Accordion title="Are there hidden fees?">
+    No. The 1% protocol fee is the only cost. Agent fees (if disputes occur) are transparent and shown upfront.
+  </Accordion>
+  <Accordion title="Can I avoid gas fees?">
+    Yes! Use the NYKNYC smart wallet. Zenland sponsors all gas fees for NYKNYC users.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Using Escrows
+
+<AccordionGroup>
+  <Accordion title="How long does it take to create an escrow?">
+    About 15-30 seconds once you submit the transaction (one Ethereum block confirmation).
+  </Accordion>
+  <Accordion title="Can I cancel an escrow?">
+    Depends on the state:
+    - **Pending:** Yes, if seller doesn't accept in time
+    - **Active:** No unilateral cancel, but seller can refund or you can negotiate a split
+  </Accordion>
+  <Accordion title="What if the seller disappears?">
+    If they never accepted the escrow, you can cancel after the acceptance window. If they accepted and marked fulfilled, you can dispute or wait for protection to expire.
+  </Accordion>
+  <Accordion title="What if the buyer disappears?">
+    Mark the escrow as fulfilled. After the protection period expires, you can claim the funds.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Disputes
+
+<AccordionGroup>
+  <Accordion title="How do disputes work?">
+    The buyer opens a dispute → either party invites the agent → agent reviews and decides the split → funds are distributed.
+  </Accordion>
+  <Accordion title="How long does dispute resolution take?">
+    Typically 1-3 days once an agent is invited. Maximum 7 days before timeout can be claimed.
+  </Accordion>
+  <Accordion title="What if the agent doesn't respond?">
+    After 7 days, either party can claim timeout. The escrow returns to disputed state with no agent, where you'll need to settle mutually.
+  </Accordion>
+  <Accordion title="Can I appeal an agent's decision?">
+    Agent decisions are final for that escrow. You can report misconduct to the DAO for future action against the agent.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Agents
+
+<AccordionGroup>
+  <Accordion title="How do I become an agent?">
+    [Register as an agent](/agents/becoming-an-agent) by staking stablecoins and DAO tokens. You'll need to meet minimum requirements.
+  </Accordion>
+  <Accordion title="How much can I earn as an agent?">
+    You set your own fees (within DAO limits). Earnings depend on the number of disputes you resolve.
+  </Accordion>
+  <Accordion title="What happens if an agent misbehaves?">
+    The DAO can slash their stake as punishment. Repeated misconduct leads to larger slashes.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Technical
+
+<AccordionGroup>
+  <Accordion title="Is the code open source?">
+    Yes. Smart contracts are verified on Etherscan and available on GitHub.
+  </Accordion>
+  <Accordion title="Can I integrate Zenland into my app?">
+    Yes! See our [developer documentation](/developers/integration-guide).
+  </Accordion>
+  <Accordion title="What's a locked escrow?">
+    An escrow with no agent. Funds can only move if both parties agree. See [Locked Escrow](/escrow-types/locked-escrow).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Didn't find your answer?
+
+<Card title="Ask the Community" icon="telegram" href="https://t.me/zenland">
+  Join our Telegram for help
+</Card>

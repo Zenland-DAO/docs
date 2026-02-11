@@ -1,0 +1,139 @@
+---
+title: "Treasury"
+sidebarTitle: "Treasury"
+description: "How the DAO treasury is funded and managed."
+---
+
+## What is the Treasury?
+
+The **Zenland DAO Treasury** is a smart contract that:
+
+- Receives all protocol fees
+- Holds DAO assets
+- Disperses funds via governance
+
+<Card title="100% Protocol Revenue" icon="coins">
+  Every protocol fee goes directly to the treasury. No company takes a cut.
+</Card>
+
+---
+
+## How It's Funded
+
+### Protocol Fees
+
+| Source | Flow |
+|--------|------|
+| Escrow creation fee (1%) | → Treasury |
+| Agent assignment fees | → Treasury |
+
+### Other Sources
+
+- Token sale proceeds (if any)
+- Grants and partnerships
+- Yield from assets (if deployed)
+
+---
+
+## Treasury Management
+
+### Controlled by DAO
+
+Only governance proposals can move treasury funds:
+
+1. **Discussion** — Community agrees on use of funds
+2. **Proposal** — Formal on-chain request
+3. **Vote** — Token holders approve/reject
+4. **Timelock** — 2-day safety delay
+5. **Execution** — Funds transfer
+
+<Warning>
+No individual can access treasury funds. Only passed proposals can trigger transfers.
+</Warning>
+
+### Timelock Contract
+
+The treasury is actually a **Timelock** contract:
+
+- Acts as the **owner** of protocol contracts
+- Executes proposals after delay
+- Can be paused in emergencies
+
+---
+
+## Treasury Uses
+
+<AccordionGroup>
+  <Accordion title="Protocol Development" icon="code">
+    Fund developers to build new features, fix bugs, improve UX.
+  </Accordion>
+  <Accordion title="Security Audits" icon="shield">
+    Pay for professional security reviews before upgrades.
+  </Accordion>
+  <Accordion title="Community Grants" icon="gift">
+    Support community projects, integrations, educational content.
+  </Accordion>
+  <Accordion title="Bug Bounties" icon="bug">
+    Reward security researchers who find vulnerabilities.
+  </Accordion>
+  <Accordion title="Marketing" icon="bullhorn">
+    Fund awareness campaigns and growth initiatives.
+  </Accordion>
+  <Accordion title="Operations" icon="gears">
+    Infrastructure, legal, compliance costs.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Transparency
+
+Everything is on-chain:
+
+| Data | Where |
+|------|-------|
+| Treasury balance | Etherscan |
+| All transactions | Block explorer |
+| Pending proposals | Governor contract |
+
+<Card title="View Treasury" icon="vault" href="https://etherscan.io/address/0x0000000000000000000000000000000000000000">
+  Check treasury balance on Etherscan →
+</Card>
+
+---
+
+## Requesting Funds
+
+Want to request funds for a project?
+
+<Steps>
+  <Step title="Write a Proposal">
+    Describe what you want to do and how much you need
+  </Step>
+  <Step title="Discuss in Forum">
+    Gather community feedback
+  </Step>
+  <Step title="Refine & Submit">
+    Create on-chain proposal (or ask a delegate to help)
+  </Step>
+  <Step title="Advocate">
+    Explain why your project benefits Zenland
+  </Step>
+</Steps>
+
+### Good Grant Proposals Include
+
+<CardGroup cols={2}>
+  <Card title="Clear Deliverables" icon="list-check">
+    What exactly will you produce?
+  </Card>
+  <Card title="Budget Breakdown" icon="calculator">
+    How will funds be spent?
+  </Card>
+  <Card title="Timeline" icon="calendar">
+    When will milestones be delivered?
+  </Card>
+  <Card title="Track Record" icon="history">
+    What have you built before?
+  </Card>
+</CardGroup>

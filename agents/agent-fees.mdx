@@ -1,0 +1,174 @@
+---
+title: "Agent Fees & Earnings"
+sidebarTitle: "Fees"
+description: "How agents earn money on Zenland."
+---
+
+## Fee Types
+
+Agents can earn through two fee mechanisms:
+
+<CardGroup cols={2}>
+  <Card title="Assignment Fee" icon="tag">
+    Paid upfront when selected for an escrow
+  </Card>
+  <Card title="Dispute Fee" icon="gavel">
+    Paid only when you resolve a dispute
+  </Card>
+</CardGroup>
+
+---
+
+## Assignment Fee
+
+### How It Works
+
+- **When charged:** At escrow creation
+- **Who pays:** The buyer
+- **Typical range:** 0-2%
+- **Most common:** 0% (many agents don't charge this)
+
+### Why Charge It?
+
+- Compensation for being "on call"
+- Reserves your capacity for this escrow
+- Income even if there's no dispute
+
+### Why NOT Charge It?
+
+- Reduces your competitiveness
+- Disputed rarely, so opportunity cost is low
+- Entry barrier for your first clients
+
+<Tip>
+New agents: consider 0% assignment fee to attract your first clients.
+</Tip>
+
+---
+
+## Dispute Fee
+
+### How It Works
+
+- **When charged:** Only when you resolve a dispute
+- **Deducted from:** The escrow amount (before split)
+- **Range:** 0.1% - 10% (set by DAO)
+- **Typical:** 2-5%
+
+### Example Calculation
+
+```
+Escrow Amount: $5,000
+Your Dispute Fee: 3%
+
+When you resolve:
+- Your fee: $5,000 × 3% = $150
+- Remaining for split: $4,850
+```
+
+---
+
+## Setting Your Fees
+
+When registering or updating your profile:
+
+| Parameter | Min | Max | Notes |
+|-----------|-----|-----|-------|
+| Assignment Fee | 0% | 2% | Can be 0 |
+| Dispute Fee | 0.1% | 10% | Must be > 0 |
+
+### Strategy Considerations
+
+<AccordionGroup>
+  <Accordion title="Low fees" icon="down">
+    **Pros:**
+    - More competitive
+    - Attract more cases
+    - Good for building reputation
+    
+    **Cons:**
+    - Less income per case
+    - May signal inexperience
+  </Accordion>
+  <Accordion title="High fees" icon="up">
+    **Pros:**
+    - More income per case
+    - May signal expertise
+    - Sustainable for serious agents
+    
+    **Cons:**
+    - Fewer cases
+    - Only works with reputation
+  </Accordion>
+  <Accordion title="Balanced approach" icon="scale-balanced">
+    **0% assignment, 3-5% dispute:**
+    - No barrier to selection
+    - Fair compensation when you work
+    - Competitive yet sustainable
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Earning Projections
+
+### Conservative Estimates
+
+| Monthly Cases | Avg Escrow | Dispute Fee | Monthly Earnings |
+|---------------|------------|-------------|------------------|
+| 2 | $1,000 | 3% | $60 |
+| 5 | $2,000 | 3% | $300 |
+| 10 | $5,000 | 3% | $1,500 |
+| 20 | $10,000 | 3% | $6,000 |
+
+<Note>
+Actual earnings depend on your reputation, MAV, and the volume of disputes in the system.
+</Note>
+
+### What Affects Your Volume?
+
+- **Reputation:** Higher = more selections
+- **MAV:** Higher = eligible for bigger escrows
+- **Fees:** Lower (to a point) = more competitive
+- **Response time:** Faster = better reputation
+
+---
+
+## Receiving Payment
+
+When you resolve a dispute:
+
+1. You submit your decision
+2. Smart contract calculates your fee
+3. Fee is transferred to your wallet
+4. Remaining funds split between parties
+5. All in one atomic transaction
+
+<Tip>
+No invoicing required. Fees are paid instantly on resolution.
+</Tip>
+
+---
+
+## Gas Costs
+
+With your own wallet:
+- `agentResolve()` costs ~100,000-150,000 gas
+- At 20 gwei: ~$2-3 per resolution
+
+With NYKNYC wallet:
+- **$0** — Zenland sponsors all agent gas
+
+<Card title="Get NYKNYC" icon="wallet" href="/getting-started/wallets">
+  Register with zero gas costs →
+</Card>
+
+---
+
+## Tax Considerations
+
+<Warning>
+Agent earnings may be taxable income. Consult a tax professional in your jurisdiction.
+</Warning>
+
+You can export your earnings history from the agent dashboard for record-keeping.

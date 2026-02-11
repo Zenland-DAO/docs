@@ -1,0 +1,308 @@
+---
+title: "Smart Contracts"
+sidebarTitle: "Contracts"
+description: "Detailed smart contract specifications."
+---
+
+## Contract Overview
+
+| Contract | Type | Purpose |
+|----------|------|---------|
+| EscrowFactory | Upgradeable (UUPS) | Creates and tracks escrows |
+| AgentRegistry | Upgradeable (UUPS) | Manages agent lifecycle |
+| FeeManager | Upgradeable (UUPS) | Fee configuration |
+| EscrowImplementation | Immutable | Template for escrow clones |
+
+---
+
+## EscrowFactory
+
+### Storage
+
+```solidity
+address public implementation;
+address public agentRegistry;
+address public feeManager;
+address public treasury;
+mapping(address => bool) public isEscrow;
+```
+
+### Key Functions
+
+#### createEscrow
+
+Creates and funds a new escrow atomically.
+
+```solidity
+function createEscrow(
+    bytes32 userSalt,
+    address seller,
+    address agent,           // address(0) for locked
+    address token,
+    uint256 amount,
+    uint256 buyerProtectionTime,
+    bytes32 termsHash,
+    uint256 version,
+    address expectedEscrow   // Safety check
+) external returns (address escrow);
+```
+
+**Flow:**
+1. Calculate salt: `keccak256(userSalt, msg.sender)`
+2. Predict escrow address via CREATE2
+3. Validate: token whitelisted, amount valid, agent valid
+4. Transfer protocol fee to treasury
+5. Transfer escrow amount to predicted address
+6. Deploy clone
+7. Initialize escrow
+8. Set `isEscrow[escrow] = true`
+
+#### quoteCreateEscrow
+
+Preview an escrow creation without executing.
+
+```solidity
+function quoteCreateEscrow(
+    bytes32 userSalt,
+    address seller,
+    address agent,
+    address token,
+    uint256 amount,
+    uint256 buyerProtectionTime
+) external view returns (
+    address predictedAddress,
+    uint256 creationFee,
+    uint256 assignmentFee
+);
+```
+
+---
+
+## AgentRegistry
+
+### Storage
+
+```solidity
+struct Agent {
+    bool registered;
+    bool available;
+    uint256 stablecoinStake;
+    uint256 tokenStake;
+    uint256 assignmentFeeBps;
+    uint256 disputeFeeBps;
+    uint256 activeCases;
+    uint256 lastCaseTimestamp;
+}
+mapping(address => Agent) public agents;
+```
+
+### Key Functions
+
+#### register
+
+```solidity
+function register(
+    uint256 stablecoinAmount,
+    uint256 tokenAmount,
+    uint256 assignmentFeeBps,
+    uint256 disputeFeeBps
+) external;
+```
+
+#### addStake / withdrawStake
+
+```solidity
+function addStake(uint256 stablecoinAmount, uint256 tokenAmount) external;
+function withdrawStake(uint256 stablecoinAmount, uint256 tokenAmount) external;
+```
+
+#### validateAgentForContract
+
+```solidity
+function validateAgentForContract(
+    address agent,
+    uint256 contractValueWad  // 18-decimal normalized
+) external view returns (bool);
+```
+
+**Checks:**
+- Agent is registered
+- Agent is available
+- Agent's MAV ≥ contract value
+- Agent has minimum stakes
+
+---
+
+## FeeManager
+
+### Storage
+
+```solidity
+struct TokenConfig {
+    bool whitelisted;
+    uint8 decimals;
+    uint256 creationFeeBps;
+    uint256 minCreationFee;
+    uint256 maxCreationFee;
+}
+mapping(address => TokenConfig) public tokenConfigs;
+```
+
+### Key Functions
+
+#### quoteCreationFee
+
+```solidity
+function quoteCreationFee(
+    address token,
+    uint256 amount
+) external view returns (uint256 fee);
+```
+
+**Logic:**
+```
+rawFee = amount * feeBps / 10000
+fee = clamp(rawFee, minFee, maxFee)
+```
+
+---
+
+## EscrowImplementation
+
+### Storage
+
+```solidity
+// Core parties
+address public buyer;
+address public seller;
+address public agent;
+
+// Funds
+address public token;
+uint256 public amount;
+
+// Time parameters
+uint256 public buyerProtectionTime;
+uint256 public sellerAcceptDeadline;
+uint256 public fulfilledAt;
+
+// State
+EscrowState public state;
+bytes32 public termsHash;
+
+// Split negotiation
+uint256 public proposedBuyerBps;
+uint256 public proposedSellerBps;
+address public splitProposer;
+```
+
+### State Enum
+
+```solidity
+enum EscrowState {
+    PENDING,        // 0
+    ACTIVE,         // 1
+    FULFILLED,      // 2
+    RELEASED,       // 3 (terminal)
+    REFUNDED,       // 4 (terminal)
+    DISPUTED,       // 5
+    AGENT_INVITED,  // 6
+    SPLIT,          // 7 (terminal)
+    AGENT_RESOLVED  // 8 (terminal)
+}
+```
+
+### Key Functions
+
+#### accept / decline
+
+```solidity
+function accept() external;  // Seller only, PENDING -> ACTIVE
+function decline() external; // Seller only, PENDING -> REFUNDED
+```
+
+#### markFulfilled
+
+```solidity
+function markFulfilled() external; // Seller only, ACTIVE -> FULFILLED
+```
+
+#### release
+
+```solidity
+function release() external; // Buyer only, -> RELEASED
+```
+
+#### sellerRefund
+
+```solidity
+function sellerRefund() external; // Seller only, -> REFUNDED
+```
+
+#### openDispute
+
+```solidity
+function openDispute() external; // Buyer only, -> DISPUTED
+```
+
+#### inviteAgent
+
+```solidity
+function inviteAgent() external; // Either party, DISPUTED -> AGENT_INVITED
+```
+
+#### agentResolve
+
+```solidity
+function agentResolve(
+    uint256 buyerBps,
+    uint256 sellerBps
+) external; // Agent only, -> AGENT_RESOLVED
+```
+
+#### proposeSplit / approveSplit / executeSplit
+
+```solidity
+function proposeSplit(uint256 buyerBps, uint256 sellerBps) external;
+function approveSplit() external;
+function executeSplit() external;
+```
+
+---
+
+## Events
+
+### EscrowFactory Events
+
+```solidity
+event EscrowCreated(
+    address indexed escrow,
+    address indexed buyer,
+    address indexed seller,
+    address agent,
+    address token,
+    uint256 amount,
+    uint256 fee
+);
+```
+
+### EscrowImplementation Events
+
+```solidity
+event Accepted(address indexed seller);
+event Declined(address indexed seller);
+event Fulfilled(address indexed seller, uint256 timestamp);
+event Released(address indexed buyer, uint256 amount);
+event Refunded(address indexed seller, uint256 amount);
+event DisputeOpened(address indexed buyer);
+event AgentInvited(address indexed inviter, address agent);
+event AgentResolved(address agent, uint256 buyerAmount, uint256 sellerAmount);
+event SplitProposed(address indexed proposer, uint256 buyerBps, uint256 sellerBps);
+event SplitExecuted(uint256 buyerAmount, uint256 sellerAmount);
+```
+
+---
+
+<Card title="Integration Guide" icon="plug" href="/developers/integration-guide">
+  Learn how to integrate →
+</Card>

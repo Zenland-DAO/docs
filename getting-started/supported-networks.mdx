@@ -1,0 +1,101 @@
+---
+title: "Supported Networks"
+sidebarTitle: "Networks"
+description: "Where Zenland is deployed and how to connect."
+---
+
+## Ethereum Mainnet
+
+<Card title="Ethereum" icon="ethereum">
+  **Production Network** — Real assets, real transactions
+</Card>
+
+Zenland is deployed on **Ethereum mainnet**, the most secure and decentralized blockchain network.
+
+- **Battle-tested security** since 2015
+- **Largest DeFi ecosystem** with deep liquidity
+- **Supported tokens:** USDC, USDT
+
+### Contract Addresses (Mainnet)
+
+| Contract | Address |
+|----------|---------|
+| EscrowFactory | `0x0000000000000000000000000000000000000000` |
+| AgentRegistry | `0x0000000000000000000000000000000000000000` |
+| FeeManager | `0x0000000000000000000000000000000000000000` |
+
+<Note>
+Contract addresses will be updated after mainnet deployment.
+</Note>
+
+---
+
+## Sepolia Testnet
+
+<Card title="Sepolia" icon="flask">
+  **Test Network** — Practice with fake assets
+</Card>
+
+Use Sepolia to test Zenland without risking real funds:
+
+- **Free test tokens** available from faucets
+- **Same functionality** as mainnet
+- **Perfect for developers** building integrations
+
+### Contract Addresses (Sepolia)
+
+| Contract | Address |
+|----------|---------|
+| EscrowFactory | `0x0000000000000000000000000000000000000000` |
+| AgentRegistry | `0x0000000000000000000000000000000000000000` |
+| FeeManager | `0x0000000000000000000000000000000000000000` |
+
+### Getting Sepolia Test Tokens
+
+1. Get Sepolia ETH from a [faucet](https://sepoliafaucet.com)
+2. Get test USDC/USDT from the Zenland app (we provide test tokens)
+
+---
+
+## Supported Tokens
+
+Zenland V1 supports stablecoin escrows:
+
+| Token | Symbol | Decimals | Status |
+|-------|--------|----------|--------|
+| USD Coin | USDC | 6 | ✅ Supported |
+| Tether | USDT | 6 | ✅ Supported |
+
+<Info>
+More tokens can be added through DAO governance. Vote on proposals to expand token support!
+</Info>
+
+---
+
+## Network Configuration
+
+Add Zenland-supported networks to your wallet:
+
+### Ethereum Mainnet
+
+```
+Network Name: Ethereum Mainnet
+RPC URL: https://eth.llamarpc.com
+Chain ID: 1
+Currency: ETH
+Block Explorer: https://etherscan.io
+```
+
+### Sepolia Testnet
+
+```
+Network Name: Sepolia
+RPC URL: https://rpc.sepolia.org
+Chain ID: 11155111
+Currency: SepoliaETH
+Block Explorer: https://sepolia.etherscan.io
+```
+
+<Tip>
+Most wallets (MetaMask, Coinbase Wallet, etc.) have Ethereum Mainnet pre-configured.
+</Tip>

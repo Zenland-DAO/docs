@@ -1,0 +1,361 @@
+---
+title: "API Reference"
+sidebarTitle: "API Reference"
+description: "Complete function reference for Zenland smart contracts."
+---
+
+## EscrowFactory
+
+### Write Functions
+
+#### createEscrow
+
+Creates and funds a new escrow atomically.
+
+```solidity
+function createEscrow(
+    bytes32 userSalt,          // User-provided entropy for address
+    address seller,            // Seller address
+    address agent,             // Agent (or address(0) for locked)
+    address token,             // ERC20 token address
+    uint256 amount,            // Escrow amount (in token decimals)
+    uint256 buyerProtectionTime, // Time buyer has to review (seconds)
+    bytes32 termsHash,         // Hash of PDF terms
+    uint256 version,           // Contract version
+    address expectedEscrow     // Expected address (safety check)
+) external returns (address escrow);
+```
+
+| Reverts If |
+|------------|
+| Token not whitelisted |
+| Amount below minimum |
+| Amount above maximum |
+| Agent not valid (if specified) |
+| Expected address mismatch |
+| Insufficient token balance/approval |
+
+### View Functions
+
+#### quoteCreateEscrow
+
+```solidity
+function quoteCreateEscrow(
+    bytes32 userSalt,
+    address seller,
+    address agent,
+    address token,
+    uint256 amount,
+    uint256 buyerProtectionTime
+) external view returns (
+    address predictedAddress,
+    uint256 creationFee,
+    uint256 assignmentFee
+);
+```
+
+#### isEscrow
+
+```solidity
+function isEscrow(address addr) external view returns (bool);
+```
+
+---
+
+## EscrowImplementation
+
+### State Variables (Read)
+
+```solidity
+function buyer() external view returns (address);
+function seller() external view returns (address);
+function agent() external view returns (address);
+function token() external view returns (address);
+function amount() external view returns (uint256);
+function state() external view returns (EscrowState);
+function termsHash() external view returns (bytes32);
+function buyerProtectionTime() external view returns (uint256);
+function sellerAcceptDeadline() external view returns (uint256);
+function fulfilledAt() external view returns (uint256);
+function agentInvitedAt() external view returns (uint256);
+```
+
+### Write Functions
+
+#### accept
+
+Seller accepts the escrow terms.
+
+```solidity
+function accept() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be seller |
+| State must be PENDING |
+| Must be before accept deadline |
+
+#### decline
+
+Seller declines, refunding buyer.
+
+```solidity
+function decline() external;
+```
+
+#### cancelExpired
+
+Buyer cancels after acceptance window.
+
+```solidity
+function cancelExpired() external;
+```
+
+| Constraint |
+|------------|
+| State must be PENDING |
+| Accept deadline must have passed |
+
+#### markFulfilled
+
+Seller marks work as complete.
+
+```solidity
+function markFulfilled() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be seller |
+| State must be ACTIVE |
+
+#### release
+
+Buyer releases funds to seller.
+
+```solidity
+function release() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be buyer |
+| State must be ACTIVE or FULFILLED |
+
+#### sellerRefund
+
+Seller refunds 100% to buyer.
+
+```solidity
+function sellerRefund() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be seller |
+| State must not be terminal |
+
+#### claimExpired
+
+Seller claims after protection expires.
+
+```solidity
+function claimExpired() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be seller |
+| State must be FULFILLED |
+| Protection time must have expired |
+
+#### openDispute
+
+Buyer opens a dispute.
+
+```solidity
+function openDispute() external;
+```
+
+| Constraint |
+|------------|
+| Caller must be buyer |
+| State must be ACTIVE or FULFILLED |
+
+#### inviteAgent
+
+Either party invites agent.
+
+```solidity
+function inviteAgent() external;
+```
+
+| Constraint |
+|------------|
+| State must be DISPUTED |
+| Agent must not be address(0) |
+| Agent must still be valid |
+
+#### claimAgentTimeout
+
+Claim timeout after agent fails to act.
+
+```solidity
+function claimAgentTimeout() external;
+```
+
+| Constraint |
+|------------|
+| State must be AGENT_INVITED |
+| 7 days must have passed since invite |
+
+#### agentResolve
+
+Agent resolves the dispute.
+
+```solidity
+function agentResolve(
+    uint256 buyerBps,   // 0-10000
+    uint256 sellerBps   // 0-10000, must sum with buyerBps to 10000
+) external;
+```
+
+| Constraint |
+|------------|
+| Caller must be agent |
+| State must be AGENT_INVITED |
+| buyerBps + sellerBps == 10000 |
+
+#### proposeSplit
+
+Propose a mutual split.
+
+```solidity
+function proposeSplit(
+    uint256 buyerBps,
+    uint256 sellerBps
+) external;
+```
+
+#### approveSplit
+
+Accept the other party's proposal.
+
+```solidity
+function approveSplit() external;
+```
+
+#### executeSplit
+
+Execute an approved split.
+
+```solidity
+function executeSplit() external;
+```
+
+---
+
+## AgentRegistry
+
+### Write Functions
+
+#### register
+
+```solidity
+function register(
+    uint256 stablecoinAmount,
+    uint256 tokenAmount,
+    uint256 assignmentFeeBps,
+    uint256 disputeFeeBps
+) external;
+```
+
+#### addStake
+
+```solidity
+function addStake(
+    uint256 stablecoinAmount,
+    uint256 tokenAmount
+) external;
+```
+
+#### withdrawStake
+
+```solidity
+function withdrawStake(
+    uint256 stablecoinAmount,
+    uint256 tokenAmount
+) external;
+```
+
+#### setFees
+
+```solidity
+function setFees(
+    uint256 assignmentFeeBps,
+    uint256 disputeFeeBps
+) external;
+```
+
+#### setAvailable / setUnavailable
+
+```solidity
+function setAvailable() external;
+function setUnavailable() external;
+```
+
+### View Functions
+
+#### getAgent
+
+```solidity
+function getAgent(address agent) external view returns (
+    bool registered,
+    bool available,
+    uint256 stablecoinStake,
+    uint256 tokenStake,
+    uint256 assignmentFeeBps,
+    uint256 disputeFeeBps,
+    uint256 activeCases,
+    uint256 lastCaseTimestamp
+);
+```
+
+#### validateAgentForContract
+
+```solidity
+function validateAgentForContract(
+    address agent,
+    uint256 contractValueWad  // 18-decimal normalized
+) external view returns (bool valid);
+```
+
+#### getMaxArbitratableValue
+
+```solidity
+function getMaxArbitratableValue(
+    address agent
+) external view returns (uint256 mavWad);
+```
+
+---
+
+## FeeManager
+
+### View Functions
+
+#### quoteCreationFee
+
+```solidity
+function quoteCreationFee(
+    address token,
+    uint256 amount
+) external view returns (uint256 fee);
+```
+
+#### isWhitelisted
+
+```solidity
+function isWhitelisted(address token) external view returns (bool);
+```

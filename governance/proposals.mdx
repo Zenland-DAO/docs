@@ -1,0 +1,158 @@
+---
+title: "Proposals"
+sidebarTitle: "Proposals"
+description: "How to create and vote on governance proposals."
+---
+
+## Proposal Lifecycle
+
+<Steps>
+  <Step title="Forum Discussion">
+    Share your idea on the DAO forum. Gather feedback and refine.
+  </Step>
+  <Step title="Create Proposal">
+    If you have enough tokens, submit on-chain.
+  </Step>
+  <Step title="Voting Period">
+    7 days for token holders to vote.
+  </Step>
+  <Step title="Timelock">
+    If passed, 2-day delay before execution.
+  </Step>
+  <Step title="Execution">
+    Changes are applied automatically.
+  </Step>
+</Steps>
+
+---
+
+## Proposal Thresholds
+
+| Action | Requirement |
+|--------|-------------|
+| Create Proposal | 1% of total supply |
+| Quorum to Pass | 4% of total supply |
+| Voting Period | 7 days |
+| Timelock Delay | 2 days |
+
+<Note>
+Thresholds may be adjusted via governance.
+</Note>
+
+---
+
+## How to Vote
+
+### Using the DAO Interface
+
+<Steps>
+  <Step title="Connect Wallet">
+    Connect with tokens delegated to yourself
+  </Step>
+  <Step title="View Active Proposals">
+    Browse proposals in the governance section
+  </Step>
+  <Step title="Cast Your Vote">
+    Choose For, Against, or Abstain
+  </Step>
+  <Step title="Confirm Transaction">
+    Sign the vote transaction
+  </Step>
+</Steps>
+
+### Vote Options
+
+| Option | Effect |
+|--------|--------|
+| **For** | Supports the proposal |
+| **Against** | Opposes the proposal |
+| **Abstain** | Counts toward quorum but neutral |
+
+---
+
+## What Makes a Good Proposal?
+
+<CardGroup cols={2}>
+  <Card title="Clear Problem Statement" icon="bullseye">
+    What issue are you solving?
+  </Card>
+  <Card title="Specific Solution" icon="lightbulb">
+    Exact changes proposed
+  </Card>
+  <Card title="Impact Analysis" icon="chart-line">
+    Expected effects on the protocol
+  </Card>
+  <Card title="Risk Assessment" icon="triangle-exclamation">
+    What could go wrong?
+  </Card>
+</CardGroup>
+
+### Example Proposal
+
+```markdown
+## Title: Reduce Protocol Fee to 0.75%
+
+### Summary
+Reduce the protocol fee from 1% to 0.75% to increase competitiveness.
+
+### Motivation
+Competitor platforms charge 0.5%. Reducing fees will attract more users.
+
+### Specification
+- Call `FeeManager.setCreationFeeBps(USDC, 75)`
+- Call `FeeManager.setCreationFeeBps(USDT, 75)`
+
+### Impact
+- Treasury revenue: -25% per transaction
+- Expected volume increase: +50%
+- Net effect: +12.5% total revenue
+
+### Risks
+- Revenue decrease if volume doesn't increase
+- Perception of instability from frequent changes
+```
+
+---
+
+## Creating a Proposal
+
+Requirements:
+- Own ≥1% of token supply (or have delegation)
+- Tokens delegated to yourself
+
+<Steps>
+  <Step title="Prepare Proposal Data">
+    Define target contracts, function calls, and parameters
+  </Step>
+  <Step title="Submit On-Chain">
+    Use the DAO interface or call Governor directly
+  </Step>
+  <Step title="Share Link">
+    Post in forum and community channels
+  </Step>
+  <Step title="Advocate">
+    Explain why the community should support it
+  </Step>
+</Steps>
+
+---
+
+## After Voting
+
+### If Passed
+
+1. **Queued in Timelock** — 2-day waiting period
+2. **Community Can React** — Emergency pause if malicious
+3. **Executed** — Changes go live
+
+### If Failed
+
+1. **No Changes** — Protocol continues as is
+2. **Iterate** — Refine proposal based on feedback
+3. **Re-propose** — Submit improved version
+
+---
+
+<Card title="Treasury" icon="vault" href="/governance/treasury">
+  Learn about the DAO treasury →
+</Card>

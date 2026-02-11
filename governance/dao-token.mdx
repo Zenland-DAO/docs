@@ -1,0 +1,128 @@
+---
+title: "DAO Token"
+sidebarTitle: "Token"
+description: "The Zenland DAO governance token."
+---
+
+## Overview
+
+The Zenland DAO token is the governance token of the protocol.
+
+<CardGroup cols={3}>
+  <Card title="Symbol" icon="tag">
+    ZEN *
+  </Card>
+  <Card title="Network" icon="ethereum">
+    Ethereum
+  </Card>
+  <Card title="Standard" icon="file-code">
+    ERC-20 + Votes
+  </Card>
+</CardGroup>
+
+<Note>
+* Token symbol is illustrative. Confirm official symbol before launch.
+</Note>
+
+---
+
+## Token Utility
+
+The token serves three purposes:
+
+<AccordionGroup>
+  <Accordion title="Governance Voting" icon="check-to-slot">
+    Vote on proposals to control protocol parameters, treasury, and upgrades.
+  </Accordion>
+  <Accordion title="Agent Staking" icon="coins">
+    Agents must stake DAO tokens alongside stablecoins to participate.
+  </Accordion>
+  <Accordion title="Protocol Alignment" icon="handshake">
+    Token holdings signal commitment to the Zenland ecosystem.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Voting Power
+
+### Delegation Required
+
+Your tokens only grant voting power if **delegated**:
+
+```javascript
+// Delegate to yourself
+token.delegate(yourAddress);
+
+// Or delegate to someone else
+token.delegate(delegateAddress);
+```
+
+<Warning>
+Undelegated tokens have zero voting power! Always delegate after acquiring tokens.
+</Warning>
+
+### Snapshot Voting
+
+When a proposal is created, a **snapshot block** is recorded. Your voting power equals your balance at that block.
+
+This prevents:
+- Flash loan attacks
+- Last-minute token purchases to influence votes
+
+---
+
+## Token Distribution
+
+<Note>
+Distribution details will be announced before token launch.
+</Note>
+
+### Typical DAO Distribution
+
+| Allocation | Purpose |
+|------------|---------|
+| Community | Airdrop, rewards, grants |
+| Team | Long-term alignment (vested) |
+| Treasury | Future development, incentives |
+| Ecosystem | Partnerships, integrations |
+
+---
+
+## Getting Tokens
+
+Tokens can be acquired through:
+
+<CardGroup cols={2}>
+  <Card title="Protocol Participation" icon="hands">
+    Earn tokens by using Zenland (details TBA)
+  </Card>
+  <Card title="Community Contributions" icon="gift">
+    Grants for valuable contributions
+  </Card>
+  <Card title="Agent Activity" icon="gavel">
+    Potential rewards for active agents
+  </Card>
+  <Card title="Secondary Markets" icon="exchange">
+    DEX trading (after token launch)
+  </Card>
+</CardGroup>
+
+---
+
+## Contract Address
+
+<Note>
+Token contract address will be published after deployment.
+</Note>
+
+| Network | Address |
+|---------|---------|
+| Ethereum Mainnet | `0x0000000000000000000000000000000000000000` |
+| Sepolia Testnet | `0x0000000000000000000000000000000000000000` |
+
+---
+
+<Card title="How to Vote" icon="check-to-slot" href="/governance/proposals">
+  Learn about proposals →
+</Card>

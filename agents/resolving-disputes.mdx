@@ -1,0 +1,185 @@
+---
+title: "Resolving Disputes as an Agent"
+sidebarTitle: "Resolving Disputes"
+description: "How to review and resolve disputes fairly."
+---
+
+## When You're Invited
+
+When someone invites you to resolve a dispute:
+
+1. **Notification** — You'll see it in your agent dashboard
+2. **7-Day Window** — You have 7 days to respond or you'll timeout
+3. **Review Materials** — Examine the escrow terms and evidence
+
+---
+
+## The Review Process
+
+<Steps>
+  <Step title="Understand the Terms">
+    Read the PDF contract stored on-chain. What did both parties agree to?
+  </Step>
+  <Step title="Review Evidence">
+    Look at what each party has submitted:
+    - Delivered work/goods
+    - Communication logs
+    - Screenshots, files, etc.
+  </Step>
+  <Step title="Consider Both Sides">
+    What is each party claiming? What evidence supports each claim?
+  </Step>
+  <Step title="Make a Decision">
+    Determine a fair split based on the evidence.
+  </Step>
+  <Step title="Submit Resolution">
+    Enter the split percentages and confirm.
+  </Step>
+</Steps>
+
+---
+
+## Making Fair Decisions
+
+### Common Scenarios
+
+<AccordionGroup>
+  <Accordion title="Seller delivered exactly as agreed" icon="check">
+    **Decision:** 100% to seller (minus your fee)
+    
+    Buyer may be having buyer's remorse. Terms were met.
+  </Accordion>
+  <Accordion title="Seller delivered nothing" icon="xmark">
+    **Decision:** 100% to buyer (minus your fee)
+    
+    Clear non-delivery = full refund.
+  </Accordion>
+  <Accordion title="Partial delivery" icon="circle-half-stroke">
+    **Decision:** Proportional split
+    
+    If 60% of work was done, consider 60/40 split.
+  </Accordion>
+  <Accordion title="Scope disagreement" icon="question">
+    **Decision:** Review original terms carefully
+    
+    What was actually promised? Refer to the PDF.
+  </Accordion>
+  <Accordion title="Quality dispute" icon="star-half-stroke">
+    **Decision:** Depends on specifications
+    
+    Were quality standards defined? Did work meet them?
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Decision Framework
+
+When unsure, consider:
+
+1. **What was the agreement?** — Always start with the terms
+2. **What can be proven?** — Evidence > claims
+3. **Who is acting in good faith?** — Patterns matter
+4. **What's proportional?** — Match compensation to delivery
+
+<Tip>
+When in doubt, a 50/50 split acknowledges shared responsibility. Save 0/100 splits for clear-cut cases.
+</Tip>
+
+---
+
+## Submitting Your Decision
+
+To resolve a dispute:
+
+<Steps>
+  <Step title="Open the Case">
+    Navigate to the dispute in your dashboard
+  </Step>
+  <Step title="Enter Split Percentages">
+    Specify buyer % and seller %
+    
+    Example: `buyerBps: 4000` (40%), `sellerBps: 6000` (60%)
+  </Step>
+  <Step title="Confirm & Sign">
+    The transaction executes the split
+  </Step>
+</Steps>
+
+### Fee Calculation
+
+```
+Escrow: $1,000
+Your fee: 5%
+
+You enter: 40% buyer, 60% seller
+
+Calculation:
+1. Your fee: $50
+2. Remaining: $950
+3. Buyer: $950 × 40% = $380
+4. Seller: $950 × 60% = $570
+```
+
+---
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Respond Within 48 Hours" icon="clock">
+    Show you're attentive, even if you need more time to decide.
+  </Card>
+  <Card title="Ask Questions" icon="comments">
+    Request clarification if evidence is unclear.
+  </Card>
+  <Card title="Document Your Reasoning" icon="file-lines">
+    Keep notes on why you decided what you did.
+  </Card>
+  <Card title="Be Consistent" icon="scale-balanced">
+    Similar cases should have similar outcomes.
+  </Card>
+</CardGroup>
+
+---
+
+## What You Should NOT Do
+
+<Warning>
+These actions can result in slashing:
+</Warning>
+
+- ❌ Accept bribes from either party
+- ❌ Favor a party you have a relationship with
+- ❌ Decide without reviewing evidence
+- ❌ Take longer than 7 days without acting
+- ❌ Communicate privately with one party about the case
+
+---
+
+## Handling Difficult Cases
+
+Sometimes cases are genuinely hard:
+
+### Insufficient Evidence
+
+If neither party provides clear evidence:
+- Ask for more documentation
+- Consider a 50/50 split if nothing helps
+
+### Hostile Parties
+
+If parties are abusive:
+- Focus on the evidence, not the tone
+- Make your decision professionally
+
+### Complex Technical Issues
+
+If you don't understand the work:
+- Focus on what was promised vs delivered
+- Ask for simplified explanations
+
+---
+
+<Card title="Understand Your Fees" icon="coins" href="/agents/agent-fees">
+  Learn about earning potential →
+</Card>

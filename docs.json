@@ -1,0 +1,147 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Zenland",
+  "colors": {
+    "primary": "#1A82FB",
+    "light": "#3B9DFF",
+    "dark": "#0066E0"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "getting-started/what-is-zenland",
+              "getting-started/how-it-works",
+              "getting-started/supported-networks",
+              "getting-started/wallets"
+            ]
+          },
+          {
+            "group": "User Guides",
+            "pages": [
+              "user-guides/for-buyers",
+              "user-guides/for-sellers",
+              "user-guides/creating-escrow",
+              "user-guides/managing-escrow",
+              "user-guides/resolving-disputes"
+            ]
+          },
+          {
+            "group": "Escrow Types",
+            "pages": [
+              "escrow-types/standard-escrow",
+              "escrow-types/locked-escrow"
+            ]
+          },
+          {
+            "group": "Fees & Pricing",
+            "pages": [
+              "fees/fee-structure",
+              "fees/agent-fees",
+              "fees/gas-fees"
+            ]
+          },
+          {
+            "group": "Security",
+            "pages": [
+              "security/how-funds-are-protected",
+              "security/dispute-resolution",
+              "security/audit-status"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/faq",
+              "resources/glossary",
+              "resources/contract-addresses",
+              "resources/community"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Agents",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "agents/what-is-an-agent",
+              "agents/becoming-an-agent"
+            ]
+          },
+          {
+            "group": "Agent Operations",
+            "pages": [
+              "agents/agent-staking",
+              "agents/resolving-disputes",
+              "agents/agent-fees"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developers",
+        "groups": [
+          {
+            "group": "Technical Overview",
+            "pages": [
+              "developers/architecture",
+              "developers/smart-contracts"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "developers/integration-guide",
+              "developers/api-reference"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "DAO",
+        "groups": [
+          {
+            "group": "Governance",
+            "pages": [
+              "governance/zenland-dao",
+              "governance/dao-token",
+              "governance/proposals",
+              "governance/treasury"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Launch App",
+          "href": "https://zen.land",
+          "icon": "rocket"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://t.me/zenland",
+          "icon": "telegram"
+        }
+      ]
+    }
+  },
+  "footerSocials": {
+    "telegram": "https://t.me/zenland",
+    "github": "https://github.com/zenland"
+  }
+}

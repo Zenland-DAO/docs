@@ -1,0 +1,239 @@
+---
+title: "Integration Guide"
+sidebarTitle: "Integration"
+description: "How to integrate Zenland into your application."
+---
+
+## Overview
+
+Integrate Zenland escrows into your marketplace, platform, or dApp.
+
+<CardGroup cols={3}>
+  <Card title="Read: Free" icon="eye">
+    Query escrow states and data
+  </Card>
+  <Card title="Write: Gas" icon="pen">
+    Create/manage escrows (or use NYKNYC)
+  </Card>
+  <Card title="Index: Events" icon="database">
+    Build real-time dashboards
+  </Card>
+</CardGroup>
+
+---
+
+## Installation
+
+### NPM Package
+
+```bash
+npm install @zenland/contracts
+```
+
+### Contract ABIs
+
+```javascript
+import {
+  EscrowFactory__factory,
+  EscrowImplementation__factory,
+  AgentRegistry__factory,
+} from '@zenland/contracts';
+```
+
+### Direct Import
+
+```javascript
+// ABIs are also available at
+const factoryAbi = await fetch('https://zen.land/abi/EscrowFactory.json');
+```
+
+---
+
+## Common Patterns
+
+### 1. Predict Escrow Address
+
+Before creating, predict the escrow address:
+
+```javascript
+import { ethers } from 'ethers';
+
+const factory = new ethers.Contract(FACTORY_ADDRESS, factoryAbi, provider);
+
+const { predictedAddress, creationFee, assignmentFee } = 
+  await factory.quoteCreateEscrow(
+    userSalt,
+    sellerAddress,
+    agentAddress,
+    tokenAddress,
+    amount,
+    buyerProtectionTime
+  );
+
+console.log(`Escrow will deploy to: ${predictedAddress}`);
+console.log(`Total fees: ${creationFee + assignmentFee}`);
+```
+
+### 2. Create an Escrow
+
+```javascript
+// First: approve token spending
+const token = new ethers.Contract(tokenAddress, erc20Abi, signer);
+const totalAmount = amount + creationFee;
+await token.approve(FACTORY_ADDRESS, totalAmount);
+
+// Then: create escrow
+const tx = await factory.createEscrow(
+  userSalt,
+  sellerAddress,
+  agentAddress,    // or ethers.ZeroAddress for locked
+  tokenAddress,
+  amount,
+  buyerProtectionTime,
+  termsHash,
+  1,               // version
+  predictedAddress // safety check
+);
+
+const receipt = await tx.wait();
+console.log(`Escrow created: ${receipt.logs[0].args.escrow}`);
+```
+
+### 3. Read Escrow State
+
+```javascript
+const escrow = new ethers.Contract(
+  escrowAddress,
+  escrowImplAbi,
+  provider
+);
+
+const state = await escrow.state();
+const amount = await escrow.amount();
+const buyer = await escrow.buyer();
+const seller = await escrow.seller();
+
+const states = ['PENDING', 'ACTIVE', 'FULFILLED', 'RELEASED', 
+                'REFUNDED', 'DISPUTED', 'AGENT_INVITED', 
+                'SPLIT', 'AGENT_RESOLVED'];
+console.log(`State: ${states[state]}`);
+```
+
+### 4. Execute Actions
+
+```javascript
+// As buyer: release funds
+await escrow.connect(buyerSigner).release();
+
+// As seller: mark fulfilled
+await escrow.connect(sellerSigner).markFulfilled();
+
+// As seller: refund
+await escrow.connect(sellerSigner).sellerRefund();
+```
+
+---
+
+## Indexing Events
+
+### Using Ethers.js
+
+```javascript
+// Listen to all escrow creations
+factory.on('EscrowCreated', (escrow, buyer, seller, agent, token, amount, fee) => {
+  console.log(`New escrow: ${escrow}`);
+});
+
+// Listen to specific escrow events
+escrow.on('Released', (buyer, amount) => {
+  console.log(`Released ${amount} to seller`);
+});
+```
+
+### Using The Graph
+
+We're working on a subgraph. Check back soon!
+
+### Using Ponder
+
+```typescript
+// ponder.config.ts
+export default {
+  contracts: {
+    EscrowFactory: {
+      abi: factoryAbi,
+      address: FACTORY_ADDRESS,
+      startBlock: START_BLOCK,
+    },
+  },
+};
+
+// handlers/Factory.ts
+import { ponder } from '@ponder/core';
+
+ponder.on('EscrowFactory:EscrowCreated', async ({ event, context }) => {
+  await context.db.Escrow.create({
+    id: event.args.escrow,
+    buyer: event.args.buyer,
+    seller: event.args.seller,
+    amount: event.args.amount,
+    state: 'PENDING',
+  });
+});
+```
+
+---
+
+## Gas Optimization
+
+### For Your Users
+
+<CardGroup cols={2}>
+  <Card title="Use Permit (EIP-2612)" icon="bolt">
+    Combine approval + creation in one transaction.
+  </Card>
+  <Card title="Batch Reads" icon="layer-group">
+    Use multicall for reading multiple escrows.
+  </Card>
+</CardGroup>
+
+### For Your Backend
+
+```javascript
+// Use staticCall for simulations
+const wouldSucceed = await factory.createEscrow.staticCall(...args);
+
+// Estimate gas before sending
+const gasEstimate = await factory.createEscrow.estimateGas(...args);
+```
+
+---
+
+## Account Abstraction (ERC-4337)
+
+Want to sponsor gas for your users?
+
+```javascript
+// Using a paymaster (e.g., Pimlico, StackUp)
+const userOperation = await bundler.buildUserOp({
+  target: FACTORY_ADDRESS,
+  data: factory.interface.encodeFunctionData('createEscrow', args),
+});
+
+// Sponsor the operation
+userOperation.paymasterAndData = YOUR_PAYMASTER_DATA;
+
+await bundler.sendUserOperation(userOperation);
+```
+
+<Card title="Contact Us" icon="envelope" href="mailto:dev@zen.land">
+  Want integration support? Reach out!
+</Card>
+
+---
+
+## API Reference
+
+<Card title="Full API Reference" icon="book" href="/developers/api-reference">
+  See complete function signatures →
+</Card>

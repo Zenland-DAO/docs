@@ -1,0 +1,83 @@
+---
+title: "Contract Addresses"
+sidebarTitle: "Addresses"
+description: "Deployed contract addresses on all networks."
+---
+
+## Ethereum Mainnet
+
+| Contract | Address | Etherscan |
+|----------|---------|-----------|
+| **EscrowFactory** | `0x11c6bb595824014e1c11c6b4a6ad2095cf7d22ab` | [View](https://etherscan.io/address/0x11c6bb595824014e1c11c6b4a6ad2095cf7d22ab) |
+| **AgentRegistry** | `0xb528f6ba2d75c383dfe6cdab9957a6cd6b45d90d` | [View](https://etherscan.io/address/0xb528f6ba2d75c383dfe6cdab9957a6cd6b45d90d) |
+| **FeeManager** | `0x9c364b9b5020bc63e074d43f7c68493c0bbdb0cd` | [View](https://etherscan.io/address/0x9c364b9b5020bc63e074d43f7c68493c0bbdb0cd) |
+| **EscrowImplementation** | `0xf9c16945022a6ac8739a621c8eea4218f26b852c` | [View](https://etherscan.io/address/0xf9c16945022a6ac8739a621c8eea4218f26b852c) |
+
+### Supported Tokens (Mainnet)
+
+| Token | Address |
+|-------|---------|
+| USDC | `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48` |
+| USDT | `0xdAC17F958D2ee523a2206206994597C13D831ec7` |
+
+---
+
+## Sepolia Testnet
+
+| Contract | Address | Etherscan |
+|----------|---------|-----------|
+| **EscrowFactory** | `0x9f5b706288ce48ae26a161664cd6b15b9c9ebc5e` | [View](https://sepolia.etherscan.io/address/0x9f5b706288ce48ae26a161664cd6b15b9c9ebc5e) |
+| **AgentRegistry** | `0x50cdb07a74a1898308eb2331940dd6b9263cce56` | [View](https://sepolia.etherscan.io/address/0x50cdb07a74a1898308eb2331940dd6b9263cce56) |
+| **FeeManager** | `0x412c2dcdcd4d1de95c37246d0fb54f1a0b9a1f2f` | [View](https://sepolia.etherscan.io/address/0x412c2dcdcd4d1de95c37246d0fb54f1a0b9a1f2f) |
+| **EscrowImplementation** | `0xa28bb288425a8b82523a064a8fad7337a550a9d1` | [View](https://sepolia.etherscan.io/address/0xa28bb288425a8b82523a064a8fad7337a550a9d1) |
+
+### Test Tokens (Sepolia)
+
+| Token | Address |
+|-------|---------|
+| Test USDC | `0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238` |
+| Test USDT | `0x7169D38820dfd117C3FA1f22a697dBA58d90BA06` |
+
+<Tip>
+Need test tokens? Visit [faucet.daoforum.org](https://faucet.daoforum.org) to get test USDC and USDT for Sepolia.
+</Tip>
+
+---
+
+## DAO Contracts
+
+| Contract | Network | Address |
+|----------|---------|---------|
+| **DAO Token** | Mainnet | `0x5e7A494312d1943aa01682059dF1C0D2f3A27c32` |
+| **DAO Token** | Sepolia | `0xe4b758C752DD784FFA1f3D402e4401F4dD52F1ee` |
+| **DAO Timelock (Treasury)** | Mainnet | `0xcF3f26F73AEc469dfc5a0940b157214fD730B0FB` |
+| **DAO Timelock (Treasury)** | Sepolia | `0xFEa9A7879118BD78247b40C6301B29043E4E8051` |
+
+---
+
+## Verifying Contracts
+
+All contracts are verified on Etherscan:
+
+1. Click the Etherscan link above
+2. Go to "Contract" tab
+3. Click "Read Contract" or "Write Contract"
+4. View source code and ABI
+
+---
+
+## NPM Package
+
+For developers, contract ABIs are available via npm:
+
+```bash
+npm install @zenland/contracts
+```
+
+```javascript
+import { EscrowFactory__factory } from '@zenland/contracts';
+```
+
+<Card title="Integration Guide" icon="code" href="/developers/integration-guide">
+  Learn how to integrate →
+</Card>

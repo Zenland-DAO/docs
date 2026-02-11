@@ -1,0 +1,196 @@
+---
+title: "Resolving Disputes"
+sidebarTitle: "Disputes"
+description: "What happens when buyer and seller disagree, and how disputes are resolved."
+---
+
+## When to Open a Dispute
+
+Not every issue needs a formal dispute. Consider these first:
+
+<CardGroup cols={2}>
+  <Card title="Try Communication First" icon="comments">
+    Most issues stem from miscommunication. Talk to the other party before escalating.
+  </Card>
+  <Card title="Propose a Split" icon="divide">
+    Would you accept a partial refund? Splits are faster and cheaper than disputes.
+  </Card>
+</CardGroup>
+
+Open a dispute when:
+- The other party is unresponsive
+- You fundamentally disagree on what was agreed
+- You believe the other party is acting in bad faith
+
+---
+
+## The Dispute Process
+
+<Steps>
+  <Step title="Open Dispute">
+    The **buyer** clicks "Open Dispute" on the escrow page. This pauses normal settlement.
+  </Step>
+  <Step title="Invite Agent">
+    Either party invites the pre-selected agent to review the case.
+  </Step>
+  <Step title="Agent Reviews">
+    The agent examines:
+    - The escrow terms (PDF contract)
+    - Evidence from both parties
+    - Communication history (if provided)
+  </Step>
+  <Step title="Agent Decides">
+    The agent sets a split:
+    - `80% buyer / 20% seller` (buyer mostly right)
+    - `50% / 50%` (shared fault)
+    - `10% buyer / 90% seller` (seller mostly right)
+  </Step>
+  <Step title="Funds Distributed">
+    Agent fee is deducted first, then remaining funds are split as decided.
+  </Step>
+</Steps>
+
+---
+
+## Presenting Your Case
+
+When an agent is invited, you'll need to make your case clearly:
+
+### What to Include
+
+<CardGroup cols={2}>
+  <Card title="The Agreement" icon="file-contract">
+    What was promised? Reference the escrow terms and any off-chain discussions.
+  </Card>
+  <Card title="Evidence of Delivery" icon="box">
+    Screenshots, files, links — proof of what was (or wasn't) delivered.
+  </Card>
+  <Card title="Communication" icon="message">
+    Relevant messages showing the timeline and commitments.
+  </Card>
+  <Card title="Your Ask" icon="hand-point-right">
+    Clearly state what resolution you want and why it's fair.
+  </Card>
+</CardGroup>
+
+### Tips for a Strong Case
+
+<AccordionGroup>
+  <Accordion title="Be specific" icon="magnifying-glass">
+    "The website doesn't work" is weak. "The contact form throws a 500 error when submitted" is strong.
+  </Accordion>
+  <Accordion title="Be honest" icon="scale-balanced">
+    Agents can smell exaggeration. Acknowledge any mistakes on your side.
+  </Accordion>
+  <Accordion title="Be timely" icon="clock">
+    Respond to agent questions quickly. Delays hurt your credibility.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Agent Fees
+
+When an agent resolves a dispute, they earn a fee:
+
+```
+Total Funds: $1,000
+Agent Fee: 5% = $50
+Remaining: $950
+
+Agent Decision: 60% buyer / 40% seller
+- Buyer receives: $570
+- Seller receives: $380
+```
+
+<Note>
+Agent fees vary. Check the agent's fee before selecting them when creating the escrow.
+</Note>
+
+### Fee Caps
+
+Agents must set fees within DAO-defined limits:
+- **Minimum:** 0.1% (10 basis points)
+- **Maximum:** 10% (1000 basis points)
+
+---
+
+## Agent Timeout
+
+What if the agent doesn't respond?
+
+<Warning>
+If an agent doesn't act within **7 days** of being invited, either party can claim timeout.
+</Warning>
+
+<Steps>
+  <Step title="Wait 7 Days">
+    Give the agent time to respond
+  </Step>
+  <Step title="Click 'Claim Timeout'">
+    Either party can trigger this
+  </Step>
+  <Step title="Escrow Returns to Disputed">
+    But now with NO agent (locked mode)
+  </Step>
+  <Step title="Settle Mutually">
+    Propose a split, or seller can refund
+  </Step>
+</Steps>
+
+<Note>
+Agent timeouts affect the agent's reputation and may result in DAO action.
+</Note>
+
+---
+
+## Disputes in Locked Escrows
+
+If you created an escrow without an agent:
+
+<Card title="No Third-Party Resolution" icon="lock">
+  There is no agent to invite. You must reach agreement with the other party.
+</Card>
+
+Your options:
+1. **Propose a Split** — Negotiate percentages until you agree
+2. **Seller Refunds** — Seller can always return 100% to buyer
+3. **Accept Stalemate** — Funds remain locked forever (neither party gets them)
+
+<Warning>
+This is why we recommend always selecting an agent. Locked escrows are for advanced users who accept this risk.
+</Warning>
+
+---
+
+## Escalation to DAO (Future)
+
+<Info>
+**Coming in V2:** For extreme cases where agents misbehave, disputes may be escalated to the DAO for community resolution.
+</Info>
+
+Currently, the DAO can:
+- Slash agent stakes for misconduct
+- Blacklist bad-faith agents
+- Adjust protocol parameters
+
+But individual dispute resolution is handled by agents, not DAO voting.
+
+---
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I open a dispute after protection time expires?">
+    Yes, but only if the escrow is still in Fulfilled state (seller hasn't claimed yet).
+  </Accordion>
+  <Accordion title="Can the seller open a dispute?">
+    No, only buyers can open disputes. But sellers can always refund or propose splits.
+  </Accordion>
+  <Accordion title="What if I disagree with the agent's decision?">
+    Agent decisions are final for that escrow. You can report agent misconduct to the DAO for future action.
+  </Accordion>
+  <Accordion title="How long does resolution take?">
+    Depends on the agent, but typically 1-3 days. The 7-day timeout is a safety net.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,186 @@
+---
+title: "Agent Staking"
+sidebarTitle: "Staking"
+description: "How agent staking works and why it matters."
+---
+
+## Dual Staking Model
+
+Zenland agents stake two types of assets:
+
+<CardGroup cols={2}>
+  <Card title="Stablecoin Stake" icon="dollar-sign">
+    USDC or USDT that determines your Maximum Arbitratable Value.
+  </Card>
+  <Card title="DAO Token Stake" icon="coins">
+    Zenland DAO tokens that show protocol alignment.
+  </Card>
+</CardGroup>
+
+---
+
+## Stablecoin Stake
+
+Your stablecoin stake has two purposes:
+
+### 1. Determines MAV
+
+```
+MAV = Stablecoin Stake × MAV Multiplier
+
+Example:
+$1,000 × 20 = $20,000 MAV
+```
+
+You can only handle escrows up to your MAV.
+
+### 2. Slashing Collateral
+
+If you're found to have acted in bad faith, the DAO can slash your stablecoin stake.
+
+<Warning>
+Slashing is serious. Only stake what you're willing to risk.
+</Warning>
+
+---
+
+## DAO Token Stake
+
+Token stake shows commitment to the Zenland ecosystem:
+
+- **Alignment:** You have a stake in the protocol's success
+- **Governance:** Your tokens give you voting power
+- **Reputation Signal:** Higher token stake signals commitment
+
+### Minimum Requirements
+
+| Stake Type | Minimum |
+|------------|---------|
+| Stablecoin | ~$100 equivalent |
+| DAO Token | ~100 tokens |
+
+<Note>
+Minimums are set by DAO governance and can change.
+</Note>
+
+---
+
+## MAV Mechanics
+
+### How MAV Protects Users
+
+If an agent has MAV of $20,000:
+- They can't be selected for a $25,000 escrow
+- Their stake is proportionally significant to the escrows they handle
+- Bad behavior risks meaningful financial loss
+
+### MAV Multiplier
+
+The multiplier is set by the DAO:
+
+| Multiplier | Meaning |
+|------------|---------|
+| 10x | Conservative, high agent skin in game |
+| 20x | Balanced approach (current setting) |
+| 50x | More permissive, favor agent accessibility |
+
+---
+
+## Staking More
+
+To increase your MAV:
+
+<Steps>
+  <Step title="Navigate to Agent Settings">
+    Go to your agent dashboard
+  </Step>
+  <Step title="Click 'Add Stake'">
+    Choose stablecoins and/or DAO tokens
+  </Step>
+  <Step title="Approve & Deposit">
+    Confirm the transaction
+  </Step>
+  <Step title="MAV Updates">
+    Your new MAV is active immediately
+  </Step>
+</Steps>
+
+---
+
+## Withdrawing Stake
+
+Withdrawal has several safety mechanisms:
+
+### Conditions for Withdrawal
+
+1. **No active cases** — All invited disputes must be resolved
+2. **Cooldown period** — 30 days since last case resolution
+3. **Partial withdrawal okay** — As long as remaining stake meets minimums
+
+### The `activeCases` Counter
+
+```
+When invited to dispute: activeCases++
+When dispute resolves: activeCases--
+
+Can withdraw only when: activeCases == 0
+```
+
+### Cooldown Period
+
+After your last case resolves, you must wait 30 days before withdrawing.
+
+**Why?** Prevents agents from:
+- Taking a bribe
+- Making a bad decision
+- Immediately unstaking to avoid consequences
+
+---
+
+## Slashing
+
+The DAO can slash agent stakes for misconduct:
+
+### Slashable Offenses
+
+| Offense | Severity | Typical Slash |
+|---------|----------|---------------|
+| Accepting bribes | Critical | Up to 100% |
+| Clear bias/collusion | High | 25-75% |
+| Repeated unjust decisions | Medium | 10-50% |
+| Ignoring cases | Low | Warning to 10% |
+
+### Slashing Process
+
+1. Community member reports agent
+2. DAO investigates through governance
+3. Proposal to slash is voted on
+4. If passed, stake is transferred to treasury or victim
+
+<Note>
+Slashing requires DAO vote. No individual can slash an agent.
+</Note>
+
+---
+
+## Economic Security
+
+The staking model creates these incentives:
+
+<AccordionGroup>
+  <Accordion title="Honest behavior is profitable" icon="check">
+    Build reputation → Get more cases → Earn more fees
+  </Accordion>
+  <Accordion title="Dishonesty is costly" icon="xmark">
+    Accept bribe → Get slashed → Lose stake + reputation
+  </Accordion>
+  <Accordion title="MAV prevents over-leveraging" icon="shield">
+    Can't handle escrows much larger than stake → Limited blast radius
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="Understand Agent Fees" icon="percent" href="/agents/agent-fees">
+  Learn about earning potential →
+</Card>

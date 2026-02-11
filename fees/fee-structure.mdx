@@ -1,0 +1,132 @@
+---
+title: "Fee Structure"
+sidebarTitle: "Fee Structure"
+description: "Simple, transparent pricing with a $50 maximum cap."
+---
+
+## How Fees Work
+
+Zenland charges a simple **1% protocol fee** on every escrow created.
+
+<CardGroup cols={3}>
+  <Card title="1% Fee" icon="percent">
+    One percent of the escrow amount
+  </Card>
+  <Card title="$0.50 Minimum" icon="arrow-down">
+    Never pay less than 50 cents
+  </Card>
+  <Card title="$50 Maximum" icon="arrow-up">
+    Never pay more than $50
+  </Card>
+</CardGroup>
+
+---
+
+## Fee Calculation Examples
+
+| Escrow Amount | 1% Would Be | Min/Max Applied | **You Pay** |
+|---------------|-------------|-----------------|-------------|
+| $25 | $0.25 | Below minimum | **$0.50** |
+| $100 | $1.00 | Within range | **$1.00** |
+| $500 | $5.00 | Within range | **$5.00** |
+| $2,500 | $25.00 | Within range | **$25.00** |
+| $10,000 | $100.00 | Above maximum | **$50.00** |
+| $1,000,000 | $10,000.00 | Above maximum | **$50.00** |
+
+<Note>
+The $50 cap makes Zenland extremely cost-effective for high-value transactions!
+</Note>
+
+---
+
+## Who Pays the Fee?
+
+The **buyer** pays the protocol fee when creating the escrow.
+
+```
+Escrow Amount: $1,000
+Protocol Fee: $10 (1%)
+━━━━━━━━━━━━━━━━━━━━
+Total Paid by Buyer: $1,010
+
+Seller Receives (on release): $1,000
+```
+
+<Tip>
+The fee is charged **on top** of the escrow amount. Sellers always receive the full agreed amount (minus any agent fees in disputes).
+</Tip>
+
+---
+
+## When is the Fee Charged?
+
+The fee is charged **once**, at escrow creation:
+
+- ✅ Charged when escrow is created and funded
+- ❌ NOT charged on release, refund, or split
+- ❌ NOT charged on dispute resolution
+
+<Info>
+This is intentionally different from platforms that charge on both ends. You know your total cost upfront.
+</Info>
+
+---
+
+## Locked Escrows
+
+Locked escrows (no agent) pay the **same fee** as standard escrows.
+
+Why? Even without an agent, you're using:
+- Zenland's audited smart contracts
+- Deterministic addresses for PDF verification
+- Event indexing and UI infrastructure
+- Gas-optimized minimal proxies
+
+---
+
+## Fee Breakdown by Token
+
+Fees are calculated per-token to handle different decimal places:
+
+| Token | Fee % | Min Fee | Max Fee |
+|-------|-------|---------|---------|
+| USDC | 1% (100 bps) | 500,000 (6 decimals) = $0.50 | 50,000,000 = $50 |
+| USDT | 1% (100 bps) | 500,000 (6 decimals) = $0.50 | 50,000,000 = $50 |
+
+<Note>
+Additional tokens may be added through DAO governance with their own fee configurations.
+</Note>
+
+---
+
+## Where Do Fees Go?
+
+All protocol fees are sent directly to the **DAO Treasury**:
+
+```
+Buyer creates escrow
+↓
+Fee transferred to Treasury (in same transaction)
+↓
+DAO governs treasury spending
+```
+
+The treasury funds:
+- Protocol development
+- Security audits
+- Community initiatives
+- Agent incentives
+
+---
+
+## Fee Changes
+
+Fees are controlled by the DAO:
+
+- **Current fees** are locked in when you create an escrow
+- **Future changes** only affect new escrows
+- **Your escrow** is never affected by fee updates after creation
+
+<Card title="DAO Governance" icon="users" href="/governance/zenland-dao">
+  Learn how fees are governed →
+</Card>
