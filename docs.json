@@ -134,14 +134,14 @@
         },
         {
           "anchor": "Community",
-          "href": "https://t.me/zenland",
+          "href": "https://t.me/zenlandofficial",
           "icon": "telegram"
         }
       ]
     }
   },
   "footerSocials": {
-    "telegram": "https://t.me/zenland",
-    "github": "https://github.com/zenland"
+    "telegram": "https://t.me/zenlandofficial",
+    "github": "https://github.com/zenland-dao"
   }
 }
