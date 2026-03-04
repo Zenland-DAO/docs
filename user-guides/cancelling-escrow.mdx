@@ -1,0 +1,136 @@
+---
+title: "Cancelling an Escrow"
+sidebarTitle: "Cancelling Escrow"
+description: "How to cancel an escrow and get your funds back at every stage."
+---
+
+<Info>
+**Quick answer:** If the seller hasn't accepted yet, ask them to **decline** the escrow — or wait **7 days** for the acceptance window to expire and cancel it yourself. Either way, you get a full refund.
+</Info>
+
+## How Cancellation Works
+
+There is no single "Cancel" button. How you get your funds back depends on the **current state** of the escrow. Here's every scenario:
+
+---
+
+## By Escrow State
+
+### Pending — Seller Hasn't Accepted
+
+This is the most common cancellation scenario. The escrow is created and funded, but the seller hasn't accepted yet.
+
+<CardGroup cols={2}>
+  <Card title="Option 1: Seller Declines" icon="xmark">
+    The seller logs in and clicks **Decline**. The full escrow amount is refunded to the buyer instantly.
+  </Card>
+  <Card title="Option 2: Acceptance Window Expires" icon="clock">
+    If the seller doesn't respond within **7 days**, the buyer can cancel the escrow and receive a full refund.
+  </Card>
+</CardGroup>
+
+<Warning>
+The buyer **cannot** cancel unilaterally while the 7-day acceptance window is still active. This protects the seller's right to review and accept.
+</Warning>
+
+---
+
+### Active — Seller Accepted, Work In Progress
+
+Once the seller accepts, the buyer can no longer cancel alone. But there are two ways to return the funds:
+
+| Method | Who | How |
+|--------|-----|-----|
+| **Seller Refund** | Seller | The seller can refund 100% to the buyer at any time — no approval needed |
+| **Mutual Split** | Both | Either party proposes a split (can be 100% to buyer), the other approves, and funds are distributed |
+
+<Tip>
+If you both agree the deal should be cancelled, a **split of 100% to buyer / 0% to seller** works exactly like a cancellation.
+</Tip>
+
+---
+
+### Fulfilled — Seller Marked Complete
+
+Same options as Active:
+
+- **Seller** can still refund 100% to the buyer
+- **Both parties** can agree on a split
+
+<Warning>
+**Buyers:** If you don't release, dispute, or negotiate before the protection period expires, the seller can claim the funds.
+</Warning>
+
+---
+
+### Disputed — Dispute Opened
+
+Even during a dispute, funds can still be returned:
+
+- **Seller refund** — seller can refund 100% at any time
+- **Mutual split** — both parties agree on a split
+- **Invite the agent** — the agent decides how to split the funds
+
+---
+
+### Agent Invited — Waiting for Resolution
+
+While the agent is reviewing the case:
+
+- **Seller** can still refund 100%
+- **Both parties** can still agree on a split
+- **Agent** resolves and distributes funds (minus their fee)
+- If the agent doesn't respond within **7 days**, either party can **claim timeout** — the escrow returns to Disputed state with no agent, and you settle via split or seller refund
+
+---
+
+### Terminal States — It's Over
+
+Once an escrow reaches **Released**, **Refunded**, **Split**, or **Agent Resolved**, no further actions are possible. The funds have already been distributed.
+
+---
+
+## What About the Protocol Fee?
+
+<Note>
+The protocol fee (paid by the buyer at creation) is **not refunded** regardless of how the escrow ends. This fee covers the cost of deploying and maintaining the smart contract infrastructure.
+</Note>
+
+---
+
+## Summary Table
+
+| State | Buyer Can Cancel? | Seller Can Cancel? | How |
+|-------|:-:|:-:|-----|
+| **Pending** (within 7 days) | ❌ | ✅ Decline | Seller clicks Decline |
+| **Pending** (after 7 days) | ✅ Cancel Expired | ✅ Decline | Either party acts |
+| **Active** | ❌ | ✅ Refund | Seller refunds or both agree on split |
+| **Fulfilled** | ❌ | ✅ Refund | Seller refunds or both agree on split |
+| **Disputed** | ❌ | ✅ Refund | Seller refunds, split, or agent resolves |
+| **Agent Invited** | ❌ | ✅ Refund | Seller refunds, split, agent resolves, or timeout |
+| **Terminal** | ❌ | ❌ | Already finalized |
+
+---
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="How do I cancel an escrow if the seller hasn't accepted?">
+    You have two options: ask the seller to log in and decline the escrow (instant refund), or wait for the 7-day acceptance window to expire and cancel it yourself.
+  </Accordion>
+  <Accordion title="Can the buyer cancel an active escrow?">
+    No. Once the seller accepts, the buyer cannot unilaterally cancel. The seller can refund, or both parties can agree on a split.
+  </Accordion>
+  <Accordion title="Will I get my protocol fee back?">
+    No. The protocol fee is non-refundable regardless of the outcome.
+  </Accordion>
+  <Accordion title="What happens if the agent doesn't respond?">
+    After 7 days, either party can claim agent timeout. The escrow returns to disputed state with no agent. From there, settle via mutual split or seller refund.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="Still have questions?" icon="telegram" href="https://t.me/zenlandofficial">
+  Ask the community on Telegram
+</Card>
